@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+
+<div class="card-mb-3">
+    <div class="card-header">
+        <h3>Deseja realmente exluir esta tarefa?</h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{tarefa.titulo}}</h5>
+        <p class="card-text"> Descrição: {{tarefa.descricao}}</p>
+    </div>
+    <hr/>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Sim</button>
+            <a href="{% url 'listar_tarefas' %}" class="btn btn-primary">Não</a>
+        </div>
+    </form>
+</div>
+
+
+{% endblock conteudo %}
+
+

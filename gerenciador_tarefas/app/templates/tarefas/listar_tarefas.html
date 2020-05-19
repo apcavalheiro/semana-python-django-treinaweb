@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Tarefas</h1>
+
+<a href="{% url 'cadastrar_tarefa' %}" class="btn btn-success float-lg-right">Nova tarefa</a>
+<br/>
+<br/>
+
+<h2>Listagem de tarefas</h2>
+<hr/>
+{% for tarefa in tarefas %}
+<div class="card-mb-3">
+    <div class="card-header">
+        Prioridade: {{tarefa.get_prioridade_display}}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{tarefa.titulo}}</h5>
+        <p class="card-text"> Descrição: {{tarefa.descricao}}</p>
+        <p class="card-text">Data expiração: {{tarefa.data_expiracao}}</p>
+        <a href="{% url 'excluir_tarefa' tarefa.id %}">
+            <ion-icon name="trash-outline" size="large"></ion-icon>
+        </a>
+        <a href="{% url 'editar_tarefa' tarefa.id %}">
+            <ion-icon name="pencil-outline" size="large" href="{% url 'cadastrar_tarefa' %}"></ion-icon>
+        </a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock conteudo %}
+
+
