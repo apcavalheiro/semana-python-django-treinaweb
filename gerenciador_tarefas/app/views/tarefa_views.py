@@ -43,7 +43,7 @@ def editar_tarefa(req, id):
         data_expiracao = form_tarefa.cleaned_data["data_expiracao"]
         prioridade = form_tarefa.cleaned_data["prioridade"]
         nova_tarefa = Tarefa(titulo=titulo, descricao=descricao,
-                             data_expiracao=data_expiracao, prioridade=prioridade)
+                             data_expiracao=data_expiracao, prioridade=prioridade, usuario=req.user)
         tarefa_service.editar_tarefa(tarefa_bd, nova_tarefa)
         return redirect('listar_tarefas')
     return render(req, 'tarefas/form_tarefas.html', {"form_tarefa": form_tarefa})
